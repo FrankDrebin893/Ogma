@@ -1,0 +1,79 @@
+<RelativeLayout
+    xmlns:android               = "http://schemas.android.com/apk/res/android"
+    xmlns:tools                 = "http://schemas.android.com/tools"
+    android:layout_width        = "match_parent"
+    android:layout_height       = "match_parent"
+    tools:context               = "com.littlewitgames.theelderscrollsquiz.StandardQuestionFragment"
+    android:background="@drawable/background4">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:height="60dp"
+        android:text="@string/hello_blank_fragment"
+        android:id="@+id/standardQuestionTextView"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="@dimen/quiz_answer_button_width"
+        android:height="@dimen/quiz_answer_button_height"
+        android:text="Question 1"
+        android:id="@+id/answerOne"
+        android:layout_below="@+id/standardQuestionTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/quiz_activity_side_margin"
+        android:layout_marginTop="@dimen/quiz_activity_vertical_margin"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="@dimen/quiz_answer_button_width"
+        android:height="@dimen/quiz_answer_button_height"
+        android:text="Question 2"
+        android:id="@+id/answerTwo"
+        android:layout_marginRight="@dimen/quiz_activity_side_margin"
+        android:layout_marginTop="@dimen/quiz_activity_vertical_margin"
+        android:layout_below="@id/standardQuestionTextView"
+        android:layout_alignParentRight="true"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="@dimen/quiz_answer_button_width"
+        android:height="@dimen/quiz_answer_button_height"
+        android:text="Question 3"
+        android:id="@+id/answerThree"
+        android:layout_below="@id/answerOne"
+        android:layout_marginLeft="@dimen/quiz_activity_side_margin"
+        android:layout_marginTop="@dimen/quiz_activity_vertical_margin"
+        android:layout_alignParentLeft="true"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="@dimen/quiz_answer_button_width"
+        android:height="@dimen/quiz_answer_button_height"
+        android:text="Question 4"
+        android:id="@+id/answerFour"
+        android:layout_below="@id/answerTwo"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/quiz_activity_side_margin"
+        android:layout_marginTop="@dimen/quiz_activity_vertical_margin"/>
+
+    <fragment
+        android:id="@+id/adFragment"
+        android:name="com.littlewitgames.theelderscrollsquiz.AdFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_ad"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>
