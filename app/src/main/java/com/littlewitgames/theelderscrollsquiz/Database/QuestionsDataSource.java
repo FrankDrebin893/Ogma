@@ -89,4 +89,20 @@ public class QuestionsDataSource {
         cursor.close();
         return standardQuestions;
     }
+
+    public List<StandardQuestion> getQuestionsFromCategory(String category) {
+        List<StandardQuestion> standardQuestions = new ArrayList<StandardQuestion>();
+
+        Cursor cursor = database.query(DatabaseHelper.TABLE, allColumns, DatabaseHelper.CATEGORY + " = " + category, null, null, null, null);
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            StandardQuestion standardQuestion = cursorToStandardQuestion(cursor);
+            standardQuestions.add(standardQuestion);
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        return standardQuestions;
+    }
 }
