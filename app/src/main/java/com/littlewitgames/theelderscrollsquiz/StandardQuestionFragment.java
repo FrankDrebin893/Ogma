@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.support.v4.app.FragmentActivity;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,16 +36,18 @@ public class StandardQuestionFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String question;
+    private String questionText;
     private String correct_answer;
     private String wrong_answer_one;
     private String wrong_answer_two;
     private String wrong_answer_three;
 
     private TextView questionTextView;
-    private Button answerOne;
-    private Button answerTwo;
-    private Button answerThree;
-    private Button answerFour;
+    private Button answerOneButton;
+    private Button answerTwoButton;
+    private Button answerThreeButton;
+    private Button answerFourButton;
+    private ArrayList<String> answers;
 
 
     private OnFragmentInteractionListener mListener;
@@ -82,7 +87,7 @@ public class StandardQuestionFragment extends Fragment {
         // Inflate the layout for this fragment
         LayoutInflater lf = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.fragment_standard_question, container, false);
-        answerOne = (Button) view.findViewById(R.id.answerOne);
+        assignValues(view);
         return view;
     }
 
@@ -93,12 +98,31 @@ public class StandardQuestionFragment extends Fragment {
         }
     }
 
-    public void assignValues() {
-      //  questionTextView = (TextView) getView().findViewById(R.id.standardQuestionTextView);
-      //  questionTextView.setText(this.question);
-        answerOne = (Button) getActivity().findViewById(R.id.answerOne);
+    public void assignValues(View view) {
+        questionTextView  = (TextView) view.findViewById(R.id.standardQuestionTextView);
+        answerOneButton   = (Button) view.findViewById(R.id.answerOne);
+        answerTwoButton   = (Button) view.findViewById(R.id.answerTwo);
+        answerThreeButton = (Button) view.findViewById(R.id.answerThree);
+        answerFourButton  = (Button) view.findViewById(R.id.answerFour);
 
+        shuffleAnswers();
 
+        questionText = question;
+        questionTextView.setText    (questionText);
+        answerOneButton.setText     (answers.get(0));
+        answerTwoButton.setText     (answers.get(1));
+        answerThreeButton.setText   (answers.get(2));
+        answerFourButton.setText    (answers.get(3));
+    }
+
+    public void shuffleAnswers() {
+        answers = new ArrayList<String>();
+        answers.add(correct_answer);
+        answers.add(wrong_answer_one);
+        answers.add(wrong_answer_two);
+        answers.add(wrong_answer_three);
+
+        Collections.shuffle(answers);
     }
 
 

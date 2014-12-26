@@ -72,10 +72,10 @@ public class QuizActivity extends FragmentActivity {
 
         Collections.shuffle(answers);
 
-        assignValues();
+        //assignValues();
 
         //Collections.shuffle(answers);
-/*
+
         Bundle fragBundle = new Bundle();
         fragBundle.putString("question", question);
         fragBundle.putString("correct", correctAnswer);
@@ -86,7 +86,7 @@ public class QuizActivity extends FragmentActivity {
         StandardQuestionFragment fragment = StandardQuestionFragment.newInstance(question, correctAnswer, wrong_answer_one, wrong_answer_two, wrong_answer_three);
         fragment.setArguments(fragBundle);
         getFragmentManager().beginTransaction().replace(R.id.standardQuestionFragment, fragment).commit();
-*/
+
 
     }
 
