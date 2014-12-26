@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final String CORRECT_ANSWER        = "correct_answer";
     static final String WRONG_ANSWER_ONE      = "wrong_answer_one";
     static final String WRONG_ANSWER_TWO      = "wrong_answer_two";
-    static final String WRONG_ANSWER_THREE    = "wrong_answer_tree";
+    static final String WRONG_ANSWER_THREE    = "wrong_answer_three";
     static final String CATEGORY              = "category";
     static final String TABLE                 = "questions";
 
@@ -42,12 +42,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cv.put(CATEGORY, "History");
             db.insert(TABLE, QUESTION, cv);
 
+            cv.put(QUESTION, "Who is the leader of the Stormcloaks in Elder Scrolls Skyrim IV?");
+            cv.put(CORRECT_ANSWER, "Nazeem");
+            cv.put(WRONG_ANSWER_ONE, "Ulfric Stormcloak");
+            cv.put(WRONG_ANSWER_TWO, "Ragnar the Red");
+            cv.put(WRONG_ANSWER_THREE, "Sheogorath");
+            cv.put(CATEGORY, "Skyrim");
+            db.insert(TABLE, QUESTION, cv);
+
+            cv.put(QUESTION, "Who killed high king Torygg in Elder Scrolls Skyrim IV?");
+            cv.put(CORRECT_ANSWER, "Nazeem");
+            cv.put(WRONG_ANSWER_ONE, "Ulfric Stormcloak");
+            cv.put(WRONG_ANSWER_TWO, "Ragnar the Red");
+            cv.put(WRONG_ANSWER_THREE, "Sheogorath");
+            cv.put(CATEGORY, "Skyrim");
+            db.insert(TABLE, QUESTION, cv);
+
             db.setTransactionSuccessful();
         }
         finally {
             db.endTransaction();
         }
-
     }
 
     @Override

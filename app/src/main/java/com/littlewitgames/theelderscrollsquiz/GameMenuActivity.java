@@ -8,11 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.littlewitgames.theelderscrollsquiz.Models.QuizActivity;
-
 
 public class GameMenuActivity extends ActionBarActivity {
-    private Button startQuiz;
+    private Button skyrimButton;
+    private Button addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,19 +43,38 @@ public class GameMenuActivity extends ActionBarActivity {
     }
 
     public void addListeners() {
-        startQuiz = (Button) this.findViewById(R.id.startQuiz);
+        skyrimButton = (Button) this.findViewById(R.id.skyrimCategoryButton);
+        addButton    = (Button) this.findViewById(R.id.addButton);
 
-        startQuiz.setOnClickListener(new View.OnClickListener() {
+        skyrimButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 startQuiz();
             }
         });
+
+        addButton.setOnClickListener(new View.OnClickListener()  {
+
+            @Override
+            public void onClick(View v) {
+                startAddList();
+
+            }
+        });
+    }
+
+    public void startAddList() {
+        Intent intent = new Intent(this, QuestionsListActivity.class);
+        startActivity(intent);
     }
 
     public void startQuiz() {
         Intent intent = new Intent(this, QuizActivity.class);
+        Bundle b = new Bundle();
+        b.putString("category", "Skyrim"); //Your id
+        intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);
+        finish();
     }
 }

@@ -51,7 +51,7 @@
             android:label="@string/title_activity_game_help" >
         </activity>
         <activity
-            android:name=".Models.QuizActivity"
+            android:name=".QuizActivity"
             android:label="@string/title_activity_quiz"
             android:screenOrientation="landscape">
         </activity>

@@ -92,8 +92,8 @@ public class QuestionsDataSource {
 
     public List<StandardQuestion> getQuestionsFromCategory(String category) {
         List<StandardQuestion> standardQuestions = new ArrayList<StandardQuestion>();
-
-        Cursor cursor = database.query(DatabaseHelper.TABLE, allColumns, DatabaseHelper.CATEGORY + " = " + category, null, null, null, null);
+        String whereClause = "category = Skyrim";
+        Cursor cursor = database.query(DatabaseHelper.TABLE, allColumns, DatabaseHelper.CATEGORY + " = '" + category + "'", null, null, null, null);
         cursor.moveToFirst();
 
         while(!cursor.isAfterLast()) {
@@ -105,4 +105,21 @@ public class QuestionsDataSource {
         cursor.close();
         return standardQuestions;
     }
+
+    /*
+    public List<String> getQuestionAnswers(String category) {
+        List<String> answers = new ArrayList<String>();
+        String whereClause = "category = Skyrim";
+        Cursor cursor = database.query(DatabaseHelper.TABLE, allColumns, DatabaseHelper.CATEGORY + " = '" + category + "'", null, null, null, null);
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            String answer = cursor
+            answers.add(standardQuestion);
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        return standardQuestions;
+    }*/
 }

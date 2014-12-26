@@ -56,7 +56,7 @@ public class QuestionsListActivity extends ListActivity {
                 String[] standardQuestions = new String[] { "Cool", "Very nice", "Hate it" };
                 int nextInt = new Random().nextInt(3);
                 // save the new standardQuestion to the database
-                standardQuestion = datasource.createStandardQuestion("What is your name?", "Rasmus", "Michael", "John", "George", "Names");
+                standardQuestion = datasource.createStandardQuestion("What is your name?", "Rasmus", "Michael", "John", "George", "Skyrim");
                 adapter.add(standardQuestion);
                 break;
             case R.id.delete:

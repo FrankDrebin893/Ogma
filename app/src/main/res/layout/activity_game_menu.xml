@@ -13,6 +13,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/startQuiz"/>
+        android:text="Elder Scrolls IV: Skyrim"
+        android:id="@+id/skyrimCategoryButton"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add things"
+        android:id="@+id/addButton"
+        android:layout_below="@+id/skyrimCategoryButton"/>
 
 </RelativeLayout>

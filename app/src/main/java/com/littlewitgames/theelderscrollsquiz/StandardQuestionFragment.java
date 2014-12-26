@@ -1,12 +1,16 @@
 package com.littlewitgames.theelderscrollsquiz;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.support.v4.app.FragmentActivity;
+import android.widget.TextView;
 
 
 /**
@@ -20,11 +24,11 @@ import android.view.ViewGroup;
 public class StandardQuestionFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_QUESTION            = "param1";
-    private static final String ARG_CORRECT_ANSWER      = "param2";
-    private static final String ARG_WRONG_ANSWER_ONE    = "param3";
-    private static final String ARG_WRONG_ANSWER_TWO    = "param4";
-    private static final String ARG_WRONG_ANSWER_THREE  = "param5";
+    private static final String ARG_QUESTION            = "question";
+    private static final String ARG_CORRECT_ANSWER      = "correct";
+    private static final String ARG_WRONG_ANSWER_ONE    = "wrongOne";
+    private static final String ARG_WRONG_ANSWER_TWO    = "wrongTwo";
+    private static final String ARG_WRONG_ANSWER_THREE  = "wrongThree";
 
 
     // TODO: Rename and change types of parameters
@@ -33,6 +37,12 @@ public class StandardQuestionFragment extends Fragment {
     private String wrong_answer_one;
     private String wrong_answer_two;
     private String wrong_answer_three;
+
+    private TextView questionTextView;
+    private Button answerOne;
+    private Button answerTwo;
+    private Button answerThree;
+    private Button answerFour;
 
 
     private OnFragmentInteractionListener mListener;
@@ -70,7 +80,10 @@ public class StandardQuestionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_standard_question, container, false);
+        LayoutInflater lf = getActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.fragment_standard_question, container, false);
+        answerOne = (Button) view.findViewById(R.id.answerOne);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -79,6 +92,15 @@ public class StandardQuestionFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
+
+    public void assignValues() {
+      //  questionTextView = (TextView) getView().findViewById(R.id.standardQuestionTextView);
+      //  questionTextView.setText(this.question);
+        answerOne = (Button) getActivity().findViewById(R.id.answerOne);
+
+
+    }
+
 
     /*
     @Override
@@ -90,7 +112,7 @@ public class StandardQuestionFragment extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-    }*/
+    }
 
     @Override
     public void onDetach() {
