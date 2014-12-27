@@ -33,6 +33,11 @@ public class StandardQuestionFragment extends Fragment {
     private static final String ARG_WRONG_ANSWER_TWO    = "wrongTwo";
     private static final String ARG_WRONG_ANSWER_THREE  = "wrongThree";
 
+    private static final String ARG_TOTAL_QUESTIONS_NUM    = "totalQuestionsNum";
+    private static final String ARG_CURRENT_QUESTION_NUM   = "currentQuestionNum";
+    private static final String ARG_CORRECT_QUESTIONS_NUM  = "correctQuestionsNum";
+
+
 
     // TODO: Rename and change types of parameters
     private String question;
@@ -41,6 +46,10 @@ public class StandardQuestionFragment extends Fragment {
     private String wrong_answer_one;
     private String wrong_answer_two;
     private String wrong_answer_three;
+
+    private int totalQuestionsNum;
+    private int currentQuestionsNum;
+    private int correctQuestionsNum;
 
     private TextView questionTextView;
     private Button answerOneButton;
@@ -53,7 +62,8 @@ public class StandardQuestionFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     // TODO: Rename and change types and number of parameters
-    public static StandardQuestionFragment newInstance(String question, String correct_answer, String wrong_answer_one, String wrong_answer_two, String wrong_answer_three) {
+    public static StandardQuestionFragment newInstance(String question, String correct_answer, String wrong_answer_one, String wrong_answer_two, String wrong_answer_three,
+                                                       int totalQuestionsNum, int totalCorrectQuestionsNum, int currentQuestionNum) {
         StandardQuestionFragment fragment = new StandardQuestionFragment();
         Bundle args = new Bundle();
         args.putString(ARG_QUESTION, question);
@@ -61,6 +71,9 @@ public class StandardQuestionFragment extends Fragment {
         args.putString(ARG_WRONG_ANSWER_ONE, wrong_answer_one);
         args.putString(ARG_WRONG_ANSWER_TWO, wrong_answer_two);
         args.putString(ARG_WRONG_ANSWER_THREE, wrong_answer_three);
+        args.putInt(ARG_TOTAL_QUESTIONS_NUM, totalQuestionsNum);
+        args.putInt(ARG_CORRECT_QUESTIONS_NUM, totalCorrectQuestionsNum);
+        args.putInt(ARG_CURRENT_QUESTION_NUM, currentQuestionNum);
         fragment.setArguments(args);
         return fragment;
     }
@@ -78,6 +91,9 @@ public class StandardQuestionFragment extends Fragment {
             this.wrong_answer_one = getArguments().getString(ARG_WRONG_ANSWER_ONE);
             this.wrong_answer_two = getArguments().getString(ARG_WRONG_ANSWER_TWO);
             this.wrong_answer_three = getArguments().getString(ARG_WRONG_ANSWER_THREE);
+            this.totalQuestionsNum = getArguments().getInt(ARG_TOTAL_QUESTIONS_NUM);
+            this.correctQuestionsNum = getArguments().getInt(ARG_CORRECT_QUESTIONS_NUM);
+            this.currentQuestionsNum = getArguments().getInt(ARG_CURRENT_QUESTION_NUM);
         }
     }
 
@@ -107,7 +123,7 @@ public class StandardQuestionFragment extends Fragment {
 
         shuffleAnswers();
 
-        questionText = question;
+        questionText = "Question " + currentQuestionsNum + "/" + totalQuestionsNum + " - " + question;
         questionTextView.setText    (questionText);
         answerOneButton.setText     (answers.get(0));
         answerTwoButton.setText     (answers.get(1));

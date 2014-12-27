@@ -28,6 +28,10 @@ public class QuizActivity extends FragmentActivity {
     private Button answerThreeButton;
     private Button answerFourButton;
 
+    private int totalQuestionsNum;
+    private int currentQuestionsNum;
+    private int correctQuestionsNum;
+
     private String question;
     private String questionText;
     private String correctAnswer;
@@ -54,9 +58,30 @@ public class QuizActivity extends FragmentActivity {
             e.printStackTrace();
         }
 
-        List<StandardQuestion> values = datasource.getQuestionsFromCategory(category);
-        quizScoreHelper = new QuizScoreHelper(values.size(), 0);
+        initializeValues(category);
 
+        Bundle fragBundle = new Bundle();
+        fragBundle.putString("question", question);
+        fragBundle.putString("correct", correctAnswer);
+        fragBundle.putString("wrongOne", wrong_answer_one);
+        fragBundle.putString("wrongTwo", wrong_answer_two);
+        fragBundle.putString("wrongThree", wrong_answer_three);
+        fragBundle.putInt("totalQuestionsNum", quizScoreHelper.getTotalQuestionsNum());
+        fragBundle.putInt("totalCorrectNum", quizScoreHelper.getCorrectQuestions());
+        fragBundle.putInt("currentQuestionNum", quizScoreHelper.getCurrentQuestionNum());
+
+        StandardQuestionFragment fragment = StandardQuestionFragment.newInstance(question, correctAnswer, wrong_answer_one, wrong_answer_two, wrong_answer_three,
+                totalQuestionsNum, correctQuestionsNum, currentQuestionsNum);
+        fragment.setArguments(fragBundle);
+        getFragmentManager().beginTransaction().replace(R.id.standardQuestionFragment, fragment).commit();
+
+
+    }
+
+    public void initializeValues(String category) {
+
+        List<StandardQuestion> values   = datasource.getQuestionsFromCategory(category);
+        quizScoreHelper                 = new QuizScoreHelper(values.size(), 0);
         answers                         = new ArrayList<String>();
         StandardQuestion sq             = values.get(0);
         this.question                   = sq.getQuestion();
@@ -65,28 +90,9 @@ public class QuizActivity extends FragmentActivity {
         this.wrong_answer_two           = sq.getWrong_answer_two();
         this.wrong_answer_three         = sq.getWrong_answer_three();
 
-        answers.add(correctAnswer);
-        answers.add(wrong_answer_one);
-        answers.add(wrong_answer_two);
-        answers.add(wrong_answer_three);
-
-        Collections.shuffle(answers);
-
-        //assignValues();
-
-        //Collections.shuffle(answers);
-
-        Bundle fragBundle = new Bundle();
-        fragBundle.putString("question", question);
-        fragBundle.putString("correct", correctAnswer);
-        fragBundle.putString("wrongOne", wrong_answer_one);
-        fragBundle.putString("wrongTwo", wrong_answer_two);
-        fragBundle.putString("wrongThree", wrong_answer_three);
-
-        StandardQuestionFragment fragment = StandardQuestionFragment.newInstance(question, correctAnswer, wrong_answer_one, wrong_answer_two, wrong_answer_three);
-        fragment.setArguments(fragBundle);
-        getFragmentManager().beginTransaction().replace(R.id.standardQuestionFragment, fragment).commit();
-
+        this.totalQuestionsNum          = quizScoreHelper.getTotalQuestionsNum();
+        this.correctQuestionsNum        = quizScoreHelper.getCorrectQuestions();
+        this.currentQuestionsNum        = quizScoreHelper.getCurrentQuestionNum();
 
     }
 
