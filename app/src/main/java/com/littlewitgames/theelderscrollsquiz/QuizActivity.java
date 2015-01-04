@@ -84,8 +84,12 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
         getFragmentManager().beginTransaction().replace(R.id.standardQuestionFragment, fragment).commit();
     }
 
-    public void testNext() {
+    public void handleResult(boolean isCorrect) {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
+
+        System.out.println(isCorrect);
+
+        if(isCorrect) correctQuestionsNum++;
 
         if(currentQuestionsNum < totalQuestionsNum) {
         initializeValues();

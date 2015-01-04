@@ -189,7 +189,7 @@ public class StandardQuestionFragment extends Fragment {
         v.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ((QuizActivity)getActivity()).testNext();
+                ((QuizActivity)getActivity()).handleResult(isCorrect());
             }
         }, 2000);
     }
@@ -223,8 +223,8 @@ public class StandardQuestionFragment extends Fragment {
         Collections.shuffle(answers);
     }
 
-    public boolean isCorrect (String answer) {
-        if(answer.equals(correct_answer)) { return true; }
+    public boolean isCorrect () {
+        if(chosenAnswer.equals(correct_answer)) { return true; }
         return false;
     }
 
