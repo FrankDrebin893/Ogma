@@ -10,29 +10,29 @@ public class StandardQuestion {
     private String wrong_answer_one;
     private String wrong_answer_two;
     private String wrong_answer_three;
-    private String category;
+    private int quiz_id;
 
     public StandardQuestion() {
 
     }
 
-    public StandardQuestion(long id, String question, String correct_answer, String wrong_answer_one, String wrong_answer_two, String wrong_answer_three, String category) {
+    public StandardQuestion(long id, String question, String correct_answer, String wrong_answer_one, String wrong_answer_two, String wrong_answer_three, int quiz_id) {
         this.id = id;
         this.question = question;
         this.correct_answer = correct_answer;
         this.wrong_answer_one = wrong_answer_one;
         this.wrong_answer_two = wrong_answer_two;
         this.wrong_answer_three = wrong_answer_three;
-        this.category = category;
+        this.quiz_id = quiz_id;
     }
 
-    public StandardQuestion(String question, String correct_answer, String wrong_answer_one, String wrong_answer_two, String wrong_answer_three, String category) {
+    public StandardQuestion(String question, String correct_answer, String wrong_answer_one, String wrong_answer_two, String wrong_answer_three, int quiz_id) {
         this.question = question;
         this.correct_answer = correct_answer;
         this.wrong_answer_one = wrong_answer_one;
         this.wrong_answer_two = wrong_answer_two;
         this.wrong_answer_three = wrong_answer_three;
-        this.category = category;
+        this.quiz_id = quiz_id;
     }
 
     public long getId() {
@@ -83,11 +83,11 @@ public class StandardQuestion {
         this.wrong_answer_three = wrong_answer_three;
     }
 
-    public String getCategory() {
-        return category;
+    public int getQuiz_id() {
+        return quiz_id;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setQuiz_id(int quiz_id) {
+        this.quiz_id = quiz_id;
     }
 }

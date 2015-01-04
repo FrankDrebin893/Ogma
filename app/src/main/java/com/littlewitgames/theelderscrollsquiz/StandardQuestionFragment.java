@@ -1,15 +1,15 @@
 package com.littlewitgames.theelderscrollsquiz;
 
 import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.support.v4.app.FragmentActivity;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -57,6 +57,10 @@ public class StandardQuestionFragment extends Fragment {
     private Button answerThreeButton;
     private Button answerFourButton;
     private ArrayList<String> answers;
+    private String chosenAnswer;
+    private boolean isCorrect;
+
+    private Animation animAlpha;
 
 
     private OnFragmentInteractionListener mListener;
@@ -104,6 +108,7 @@ public class StandardQuestionFragment extends Fragment {
         LayoutInflater lf = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.fragment_standard_question, container, false);
         assignValues(view);
+        animAlpha = AnimationUtils.loadAnimation(view.getContext(), R.anim.anim_alpha);
         return view;
     }
 
@@ -113,6 +118,7 @@ public class StandardQuestionFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
+
 
     public void assignValues(View view) {
         questionTextView  = (TextView) view.findViewById(R.id.standardQuestionTextView);
@@ -128,8 +134,84 @@ public class StandardQuestionFragment extends Fragment {
         answerOneButton.setText     (answers.get(0));
         answerTwoButton.setText     (answers.get(1));
         answerThreeButton.setText   (answers.get(2));
-        answerFourButton.setText    (answers.get(3));
+        answerFourButton.setText(answers.get(3));
+
+        answerOneButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                recolorButton(v);
+                chosenAnswer = answers.get(0);
+                System.out.println("Button 1 pressed and answer = " + chosenAnswer);
+                ((QuizActivity)getActivity()).receiveFragmentIntel(correct_answer, chosenAnswer);
+                returnResult(v);
+            }
+        });
+
+        answerTwoButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                recolorButton(v);
+                chosenAnswer = answers.get(1);
+                System.out.println("Button 2 pressed and answer = " + chosenAnswer);
+                ((QuizActivity)getActivity()).receiveFragmentIntel(correct_answer, chosenAnswer);
+                returnResult(v);
+            }
+        });
+
+        answerThreeButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                recolorButton(v);
+                chosenAnswer = answers.get(2);
+                System.out.println("Button 3 pressed and answer = " + chosenAnswer);
+                ((QuizActivity)getActivity()).receiveFragmentIntel(correct_answer, chosenAnswer);
+                returnResult(v);
+            }
+        });
+
+        answerFourButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                recolorButton(v);
+                chosenAnswer = answers.get(3);
+                System.out.println("Button 4 pressed and answer = " + chosenAnswer);
+                ((QuizActivity)getActivity()).receiveFragmentIntel(correct_answer, chosenAnswer);
+                returnResult(v);
+            }
+        });
     }
+
+    public void returnResult(View v) {
+        v.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((QuizActivity)getActivity()).testNext();
+            }
+        }, 2000);
+    }
+
+
+
+
+
+    public void recolorButton(View v) {
+        Button b = (Button)v;
+        String btn_text = b.getText().toString();
+
+        if(btn_text.equals(correct_answer)) {
+            v.setActivated(true);
+        }
+        else {
+            v.setSelected(true);
+        }
+
+        v.startAnimation(animAlpha);
+    }
+
 
     public void shuffleAnswers() {
         answers = new ArrayList<String>();
@@ -141,8 +223,13 @@ public class StandardQuestionFragment extends Fragment {
         Collections.shuffle(answers);
     }
 
+    public boolean isCorrect (String answer) {
+        if(answer.equals(correct_answer)) { return true; }
+        return false;
+    }
 
-    /*
+
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -174,5 +261,6 @@ public class StandardQuestionFragment extends Fragment {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
+
 
 }

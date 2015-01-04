@@ -11,7 +11,7 @@ public class QuizScoreHelper {
     public QuizScoreHelper(int totalQuestionsNum, int correctQuestions) {
         this.totalQuestionsNum = totalQuestionsNum;
         this.correctQuestions = correctQuestions;
-        currentQuestionNum = 1;
+        currentQuestionNum = 0;
     }
 
     public int getCurrentQuestionNum() {

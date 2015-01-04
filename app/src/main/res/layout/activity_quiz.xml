@@ -75,6 +75,13 @@
         android:name="com.littlewitgames.theelderscrollsquiz.StandardQuestionFragment"/>
 
     <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_score_screen_fragment"
+        android:id="@+id/scoreScreenFragment"
+        android:name="com.littlewitgames.theelderscrollsquiz.ScoreScreenFragment" />
+
+    <fragment
         android:id="@+id/adFragment"
         android:name="com.littlewitgames.theelderscrollsquiz.AdFragment"
         android:layout_width="match_parent"

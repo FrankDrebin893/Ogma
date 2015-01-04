@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_activated="true">
+        <shape>
+            <solid android:color="@color/correct_green"/>
+            <stroke android:color="@color/stroke"
+                android:width="2px"
+                />
+        </shape>
+    </item>
+
+    <item android:state_selected="true">
+        <shape>
+            <solid android:color="@color/wrong_red"/>
+            <stroke android:color="@color/stroke" android:width="2px"/>
+        </shape>
+    </item>
+
+
+    <item>
+        <shape>
+            <stroke android:color="@color/stroke"
+                android:width="2px"/>
+            <solid android:color="@color/custom_button_background"/>
+
+        </shape>
+
+    </item>
+<!--
+    <item>
+        <shape>
+            <solid android:color="@color/abc_background_cache_hint_selector_material_dark"/>
+        </shape>
+    </item>
+    <item android:state_pressed="true" >
+        <shape>
+            <solid android:color="@color/correct_green"/>
+            <corners
+                android:radius="3dp" />
+            <padding
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
+        </shape>
+    </item>
+
+    <item android:state_focused="true" >
+        <shape>
+            <corners
+                android:radius="3dp" />
+            <padding
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <corners
+                android:radius="3dp" />
+            <padding
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
+        </shape>
+    </item>-->
+</selector>

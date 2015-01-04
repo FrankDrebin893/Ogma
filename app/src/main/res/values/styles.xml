@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -7,5 +7,10 @@
         <!-- Customize your theme here. -->
 
     </style>
+
+    <color name="correct_green">#757FE817</color>
+    <color name="wrong_red">#75C11B17</color>
+    <color name="stroke">#5a000000</color>
+    <color name="custom_button_background">#19000000</color>
 
 </resources>

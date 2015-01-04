@@ -25,6 +25,7 @@
         android:id="@+id/book"
         android:src="@drawable/book_icon2"
         android:contentDescription="@string/book_icon_desc"
+        android:layout_centerHorizontal="true"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"/>
 

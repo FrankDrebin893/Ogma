@@ -1,24 +1,27 @@
 package com.littlewitgames.theelderscrollsquiz;
 
+import android.app.FragmentTransaction;
+import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tagmanager.Container;
 import com.littlewitgames.theelderscrollsquiz.Database.QuestionsDataSource;
 import com.littlewitgames.theelderscrollsquiz.Models.QuizScoreHelper;
 import com.littlewitgames.theelderscrollsquiz.Models.StandardQuestion;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class QuizActivity extends FragmentActivity {
+public class QuizActivity extends FragmentActivity implements StandardQuestionFragment.OnFragmentInteractionListener {
     private QuestionsDataSource datasource;
     private QuizScoreHelper quizScoreHelper;
 
@@ -32,6 +35,9 @@ public class QuizActivity extends FragmentActivity {
     private int currentQuestionsNum;
     private int correctQuestionsNum;
 
+    private int currentFragmentId;
+    private int newFragmentId;
+
     private String question;
     private String questionText;
     private String correctAnswer;
@@ -39,6 +45,9 @@ public class QuizActivity extends FragmentActivity {
     private String wrong_answer_two;
     private String wrong_answer_three;
     private ArrayList<String> answers;
+    private List<StandardQuestion> values;
+
+    private StandardQuestionFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +57,9 @@ public class QuizActivity extends FragmentActivity {
         setContentView(R.layout.activity_quiz);
 
         Bundle b = getIntent().getExtras();
-        String category = b.getString("category");
+        int quiz_id = b.getInt("quiz_id");
 
-        datasource = new QuestionsDataSource(this);
+        datasource      = new QuestionsDataSource(this);
 
         try {
             datasource.open();
@@ -58,42 +67,89 @@ public class QuizActivity extends FragmentActivity {
             e.printStackTrace();
         }
 
-        initializeValues(category);
 
-        Bundle fragBundle = new Bundle();
-        fragBundle.putString("question", question);
-        fragBundle.putString("correct", correctAnswer);
-        fragBundle.putString("wrongOne", wrong_answer_one);
-        fragBundle.putString("wrongTwo", wrong_answer_two);
-        fragBundle.putString("wrongThree", wrong_answer_three);
-        fragBundle.putInt("totalQuestionsNum", quizScoreHelper.getTotalQuestionsNum());
-        fragBundle.putInt("totalCorrectNum", quizScoreHelper.getCorrectQuestions());
-        fragBundle.putInt("currentQuestionNum", quizScoreHelper.getCurrentQuestionNum());
+        values          = datasource.getQuestionsFromQuizId(quiz_id);
+        quizScoreHelper = new QuizScoreHelper(values.size(), 0);
 
-        StandardQuestionFragment fragment = StandardQuestionFragment.newInstance(question, correctAnswer, wrong_answer_one, wrong_answer_two, wrong_answer_three,
+        this.totalQuestionsNum          = quizScoreHelper.getTotalQuestionsNum();
+        this.correctQuestionsNum        = quizScoreHelper.getCorrectQuestions();
+        this.currentQuestionsNum        = quizScoreHelper.getCurrentQuestionNum();
+
+        initializeValues();
+        Bundle fragBundle = createBundle();
+
+        fragment = StandardQuestionFragment.newInstance(question, correctAnswer, wrong_answer_one, wrong_answer_two, wrong_answer_three,
                 totalQuestionsNum, correctQuestionsNum, currentQuestionsNum);
         fragment.setArguments(fragBundle);
         getFragmentManager().beginTransaction().replace(R.id.standardQuestionFragment, fragment).commit();
+    }
 
+    public void testNext() {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+
+        if(currentQuestionsNum < totalQuestionsNum) {
+        initializeValues();
+        Bundle bundle = createBundle();
+        fragment = StandardQuestionFragment.newInstance(question, correctAnswer, wrong_answer_one, wrong_answer_two, wrong_answer_three,
+                totalQuestionsNum, correctQuestionsNum, currentQuestionsNum);
+        fragment.setArguments(bundle);
+
+        ft.replace(R.id.standardQuestionFragment, fragment);
+        ft.commit();
+        } else {
+            startScoreScreen();
+        }
 
     }
 
-    public void initializeValues(String category) {
+    public void startScoreScreen() {
+        findViewById(R.id.standardQuestionFragment).setVisibility(View.GONE);
+        View v = findViewById(R.id.scoreScreenFragment);
+        v.setVisibility(View.VISIBLE);
+    }
 
-        List<StandardQuestion> values   = datasource.getQuestionsFromCategory(category);
-        quizScoreHelper                 = new QuizScoreHelper(values.size(), 0);
+/*
+
+    public StandardQuestionFragment createNewFragment() {
+        StandardQuestionFragment fragment = StandardQuestionFragment.newInstance(question, correctAnswer, wrong_answer_one, wrong_answer_two, wrong_answer_three,
+                totalQuestionsNum, correctQuestionsNum, currentQuestionsNum);
+        newFragmentId = fragment.getId();
+        return fragment;
+
+    }*/
+
+    public void nextQuestion() {
+        initializeValues();
+        Bundle fragBundle = createBundle();
+
+        fragment = StandardQuestionFragment.newInstance(question, correctAnswer, wrong_answer_one, wrong_answer_two, wrong_answer_three,
+                totalQuestionsNum, correctQuestionsNum, currentQuestionsNum);
+    }
+
+    public void initializeValues() {
+        this.currentQuestionsNum++;
         answers                         = new ArrayList<String>();
-        StandardQuestion sq             = values.get(0);
+        StandardQuestion sq             = values.get(this.currentQuestionsNum-1);
+
         this.question                   = sq.getQuestion();
         this.correctAnswer              = sq.getCorrect_answer();
         this.wrong_answer_one           = sq.getWrong_answer_one();
         this.wrong_answer_two           = sq.getWrong_answer_two();
         this.wrong_answer_three         = sq.getWrong_answer_three();
 
-        this.totalQuestionsNum          = quizScoreHelper.getTotalQuestionsNum();
-        this.correctQuestionsNum        = quizScoreHelper.getCorrectQuestions();
-        this.currentQuestionsNum        = quizScoreHelper.getCurrentQuestionNum();
+    }
 
+    public Bundle createBundle() {
+        Bundle fragBundle = new Bundle();
+        fragBundle.putString("question", question);
+        fragBundle.putString("correct", correctAnswer);
+        fragBundle.putString("wrongOne", wrong_answer_one);
+        fragBundle.putString("wrongTwo", wrong_answer_two);
+        fragBundle.putString("wrongThree", wrong_answer_three);
+        fragBundle.putInt("totalQuestionsNum", totalQuestionsNum);
+        fragBundle.putInt("totalCorrectNum", correctQuestionsNum);
+        fragBundle.putInt("currentQuestionNum", currentQuestionsNum);
+        return fragBundle;
     }
 
     public void assignValues() {
@@ -105,8 +161,8 @@ public class QuizActivity extends FragmentActivity {
 
         questionText = "Question " + quizScoreHelper.getCurrentQuestionNum() + "/" + quizScoreHelper.getTotalQuestionsNum() + " - " + question;
         questionTextView.setText(questionText);
-        answerOneButton.setText     (answers.get(0));
-        answerTwoButton.setText     (answers.get(1));
+        answerOneButton.setText(answers.get(0));
+        answerTwoButton.setText(answers.get(1));
         answerThreeButton.setText   (answers.get(2));
         answerFourButton.setText    (answers.get(3));
     }
@@ -132,5 +188,16 @@ public class QuizActivity extends FragmentActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void receiveFragmentIntel(String correctAnswer, String chosenAnswer) {
+        System.out.println("INTEL!");
+        System.out.println(correctAnswer);
+        System.out.println(chosenAnswer);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        System.out.println("Fragment Interaction");
     }
 }

@@ -72,7 +72,7 @@ public class GameMenuActivity extends ActionBarActivity {
     public void startQuiz() {
         Intent intent = new Intent(this, QuizActivity.class);
         Bundle b = new Bundle();
-        b.putString("category", "Skyrim"); //Your id
+        b.putInt("quiz_id", 0); //Your id
         intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);
         finish();
