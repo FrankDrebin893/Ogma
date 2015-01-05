@@ -191,12 +191,8 @@ public class StandardQuestionFragment extends Fragment {
             public void run() {
                 ((QuizActivity)getActivity()).handleResult(isCorrect());
             }
-        }, 2000);
+        }, 750);
     }
-
-
-
-
 
     public void recolorButton(View v) {
         Button b = (Button)v;
@@ -227,8 +223,6 @@ public class StandardQuestionFragment extends Fragment {
         if(chosenAnswer.equals(correct_answer)) { return true; }
         return false;
     }
-
-
 
     @Override
     public void onAttach(Activity activity) {

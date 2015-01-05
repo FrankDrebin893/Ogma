@@ -1,12 +1,13 @@
 package com.littlewitgames.theelderscrollsquiz;
 
-import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -18,31 +19,24 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ScoreScreenFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_TOTAL_QUESTIONS_NUM    = "totalQuestionsNum";
+    private static final String ARG_CORRECT_QUESTIONS_NUM  = "correctQuestionsNum";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String resultText;
+
+    private int totalQuestionsNum;
+    private int correctQuestionsNum;
+
+    private TextView resultTextView;
+    private Button exitButton;
 
     private OnFragmentInteractionListener mListener;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ScoreScreenFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ScoreScreenFragment newInstance(String param1, String param2) {
+    public static ScoreScreenFragment newInstance(int totalQuestions, int correctAnswers) {
         ScoreScreenFragment fragment = new ScoreScreenFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt(ARG_TOTAL_QUESTIONS_NUM, totalQuestions);
+        args.putInt(ARG_CORRECT_QUESTIONS_NUM, correctAnswers);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,8 +49,8 @@ public class ScoreScreenFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            this.totalQuestionsNum   = getArguments().getInt(ARG_TOTAL_QUESTIONS_NUM);
+            this.correctQuestionsNum = getArguments().getInt(ARG_CORRECT_QUESTIONS_NUM);
         }
     }
 
@@ -64,7 +58,21 @@ public class ScoreScreenFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_score_screen_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_score_screen, container, false);
+        assignValues(view);
+        return view;
+    }
+
+    public void assignValues(View view) {
+        resultTextView = (TextView) view.findViewById(R.id.scoreTextView);
+        exitButton     = (Button) view.findViewById(R.id.okayButton);
+
+        int one = this.correctQuestionsNum;
+        int two = this.totalQuestionsNum;
+
+        resultText = "Result: " + one + " / " + two + " correctly answered questions..";
+        resultTextView.setText(resultText);
+        exitButton.setText("To main menu");
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -48,6 +48,7 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
     private List<StandardQuestion> values;
 
     private StandardQuestionFragment fragment;
+    private ScoreScreenFragment scoreFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        findViewById(R.id.scoreScreenFragment).setVisibility(View.GONE);
 
         Bundle b = getIntent().getExtras();
         int quiz_id = b.getInt("quiz_id");
@@ -75,13 +77,15 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
         this.correctQuestionsNum        = quizScoreHelper.getCorrectQuestions();
         this.currentQuestionsNum        = quizScoreHelper.getCurrentQuestionNum();
 
-        initializeValues();
+        getNextQuestion();
+
+/*        initializeValues();
         Bundle fragBundle = createBundle();
 
         fragment = StandardQuestionFragment.newInstance(question, correctAnswer, wrong_answer_one, wrong_answer_two, wrong_answer_three,
                 totalQuestionsNum, correctQuestionsNum, currentQuestionsNum);
         fragment.setArguments(fragBundle);
-        getFragmentManager().beginTransaction().replace(R.id.standardQuestionFragment, fragment).commit();
+        getFragmentManager().beginTransaction().replace(R.id.standardQuestionFragment, fragment).commit();*/
     }
 
     public void handleResult(boolean isCorrect) {
@@ -93,41 +97,47 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
 
         if(currentQuestionsNum < totalQuestionsNum) {
         initializeValues();
-        Bundle bundle = createBundle();
         fragment = StandardQuestionFragment.newInstance(question, correctAnswer, wrong_answer_one, wrong_answer_two, wrong_answer_three,
                 totalQuestionsNum, correctQuestionsNum, currentQuestionsNum);
-        fragment.setArguments(bundle);
 
         ft.replace(R.id.standardQuestionFragment, fragment);
         ft.commit();
         } else {
-            startScoreScreen();
+            findViewById(R.id.standardQuestionFragment).setVisibility(View.GONE);
+           // findViewById(R.id.scoreScreenFragment).setVisibility(View.VISIBLE);
+
+            scoreFragment = ScoreScreenFragment.newInstance(totalQuestionsNum, correctQuestionsNum);
+
+            ft.replace(R.id.scoreScreenFragment, scoreFragment);
+            ft.show(fragment);
+            ft.commit();
+
+            //TextView tv = (TextView) findViewById(R.id.scoreTextView);
+            //tv.setText(correctQuestionsNum + " / " + totalQuestionsNum + " correctly answered questionessss!");
+
         }
 
     }
 
-    public void startScoreScreen() {
-        findViewById(R.id.standardQuestionFragment).setVisibility(View.GONE);
-        View v = findViewById(R.id.scoreScreenFragment);
-        v.setVisibility(View.VISIBLE);
-    }
-
-/*
-
-    public StandardQuestionFragment createNewFragment() {
-        StandardQuestionFragment fragment = StandardQuestionFragment.newInstance(question, correctAnswer, wrong_answer_one, wrong_answer_two, wrong_answer_three,
-                totalQuestionsNum, correctQuestionsNum, currentQuestionsNum);
-        newFragmentId = fragment.getId();
-        return fragment;
-
-    }*/
-
-    public void nextQuestion() {
+    public void getNextQuestion() {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
         initializeValues();
-        Bundle fragBundle = createBundle();
-
         fragment = StandardQuestionFragment.newInstance(question, correctAnswer, wrong_answer_one, wrong_answer_two, wrong_answer_three,
                 totalQuestionsNum, correctQuestionsNum, currentQuestionsNum);
+
+        ft.replace(R.id.standardQuestionFragment, fragment);
+        ft.commit();
+    }
+
+    public void startScoreScreen() {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        findViewById(R.id.standardQuestionFragment).setVisibility(View.GONE);
+        findViewById(R.id.scoreScreenFragment).setVisibility(View.VISIBLE);
+
+        scoreFragment = ScoreScreenFragment.newInstance(totalQuestionsNum, correctQuestionsNum);
+
+        ft.replace(R.id.scoreScreenFragment, scoreFragment);
+        ft.commit();
     }
 
     public void initializeValues() {

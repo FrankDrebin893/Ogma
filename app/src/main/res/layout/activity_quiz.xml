@@ -77,7 +77,7 @@
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_score_screen_fragment"
+        tools:layout="@layout/fragment_score_screen"
         android:id="@+id/scoreScreenFragment"
         android:name="com.littlewitgames.theelderscrollsquiz.ScoreScreenFragment" />
 
