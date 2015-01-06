@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,20 +9,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:height="60dp"
         android:width="425dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:textAlignment="center"
-
-        android:text="penis balls penis balls penis balls"
-        android:id="@+id/scoreTextView"/>
+        android:id="@+id/scoreTextView"
+        style="@style/ResultTextView"
+        android:background="@drawable/result_text_view_background"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/okayButton"
         android:layout_below="@id/scoreTextView"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/custom_button"/>
 
 </RelativeLayout>

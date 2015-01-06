@@ -8,6 +8,11 @@
 
     </style>
 
+    <style name="ResultTextView">
+        <item name="android:textSize">22sp</item>
+        <item name="android:height">140dp</item>
+    </style>
+
     <color name="correct_green">#757FE817</color>
     <color name="wrong_red">#75C11B17</color>
     <color name="stroke">#5a000000</color>

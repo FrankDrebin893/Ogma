@@ -189,7 +189,7 @@ public class StandardQuestionFragment extends Fragment {
         v.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ((QuizActivity)getActivity()).handleResult(isCorrect());
+                ((QuizActivity)getActivity()).answerListener(isCorrect());
             }
         }, 750);
     }

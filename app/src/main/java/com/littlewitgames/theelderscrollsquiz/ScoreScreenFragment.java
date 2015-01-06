@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import com.littlewitgames.theelderscrollsquiz.Utils.*;
 
 
 /**
@@ -23,6 +24,7 @@ public class ScoreScreenFragment extends Fragment {
     private static final String ARG_CORRECT_QUESTIONS_NUM  = "correctQuestionsNum";
 
     private String resultText;
+    private String firstPart;
 
     private int totalQuestionsNum;
     private int correctQuestionsNum;
@@ -70,8 +72,19 @@ public class ScoreScreenFragment extends Fragment {
         int one = this.correctQuestionsNum;
         int two = this.totalQuestionsNum;
 
-        resultText = "Result: " + one + " / " + two + " correctly answered questions..";
-        resultTextView.setText(resultText);
+        firstPart = "Quiz finished!";
+        resultText = "\n Correct answers: \t \t " + one + " / " + two;
+
+        StringUtils stringUtils = new StringUtils();
+
+        if (two != 0) {
+            firstPart = StringUtils.center(firstPart, 0);
+            resultTextView.setText(firstPart);
+            resultTextView.append(resultText);
+        }
+
+
+
         exitButton.setText("To main menu");
     }
 

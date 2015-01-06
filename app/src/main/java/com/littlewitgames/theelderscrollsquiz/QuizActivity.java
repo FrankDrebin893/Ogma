@@ -4,6 +4,7 @@ import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -88,33 +89,13 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
         getFragmentManager().beginTransaction().replace(R.id.standardQuestionFragment, fragment).commit();*/
     }
 
-    public void handleResult(boolean isCorrect) {
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-
-        System.out.println(isCorrect);
-
+    public void answerListener(boolean isCorrect) {
         if(isCorrect) correctQuestionsNum++;
 
         if(currentQuestionsNum < totalQuestionsNum) {
-        initializeValues();
-        fragment = StandardQuestionFragment.newInstance(question, correctAnswer, wrong_answer_one, wrong_answer_two, wrong_answer_three,
-                totalQuestionsNum, correctQuestionsNum, currentQuestionsNum);
-
-        ft.replace(R.id.standardQuestionFragment, fragment);
-        ft.commit();
+            getNextQuestion();
         } else {
-            findViewById(R.id.standardQuestionFragment).setVisibility(View.GONE);
-           // findViewById(R.id.scoreScreenFragment).setVisibility(View.VISIBLE);
-
-            scoreFragment = ScoreScreenFragment.newInstance(totalQuestionsNum, correctQuestionsNum);
-
-            ft.replace(R.id.scoreScreenFragment, scoreFragment);
-            ft.show(fragment);
-            ft.commit();
-
-            //TextView tv = (TextView) findViewById(R.id.scoreTextView);
-            //tv.setText(correctQuestionsNum + " / " + totalQuestionsNum + " correctly answered questionessss!");
-
+            startScoreScreen();
         }
 
     }
@@ -133,9 +114,7 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         findViewById(R.id.standardQuestionFragment).setVisibility(View.GONE);
         findViewById(R.id.scoreScreenFragment).setVisibility(View.VISIBLE);
-
         scoreFragment = ScoreScreenFragment.newInstance(totalQuestionsNum, correctQuestionsNum);
-
         ft.replace(R.id.scoreScreenFragment, scoreFragment);
         ft.commit();
     }

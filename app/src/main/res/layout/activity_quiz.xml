@@ -67,6 +67,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/quiz_activity_side_margin"
         android:layout_marginTop="@dimen/quiz_activity_vertical_margin"/> -->
+
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
