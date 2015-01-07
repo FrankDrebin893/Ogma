@@ -1,6 +1,7 @@
 package com.littlewitgames.theelderscrollsquiz;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -140,6 +141,7 @@ public class StandardQuestionFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
+                deactivateButtons();
                 recolorButton(v);
                 chosenAnswer = answers.get(0);
                 System.out.println("Button 1 pressed and answer = " + chosenAnswer);
@@ -152,6 +154,7 @@ public class StandardQuestionFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
+                deactivateButtons();
                 recolorButton(v);
                 chosenAnswer = answers.get(1);
                 System.out.println("Button 2 pressed and answer = " + chosenAnswer);
@@ -164,6 +167,7 @@ public class StandardQuestionFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
+                deactivateButtons();
                 recolorButton(v);
                 chosenAnswer = answers.get(2);
                 System.out.println("Button 3 pressed and answer = " + chosenAnswer);
@@ -176,6 +180,7 @@ public class StandardQuestionFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
+                deactivateButtons();
                 recolorButton(v);
                 chosenAnswer = answers.get(3);
                 System.out.println("Button 4 pressed and answer = " + chosenAnswer);
@@ -197,6 +202,8 @@ public class StandardQuestionFragment extends Fragment {
     public void recolorButton(View v) {
         Button b = (Button)v;
         String btn_text = b.getText().toString();
+        b.setTextColor(Color.WHITE);
+
 
         if(btn_text.equals(correct_answer)) {
             v.setActivated(true);
@@ -233,6 +240,17 @@ public class StandardQuestionFragment extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+
+    public void deactivateButtons() {
+        answerOneButton.setEnabled(false);
+        answerOneButton.setTextColor(Color.BLACK);
+        answerTwoButton.setEnabled(false);
+        answerTwoButton.setTextColor(Color.BLACK);
+        answerThreeButton.setEnabled(false);
+        answerThreeButton.setTextColor(Color.BLACK);
+        answerFourButton.setEnabled(false);
+        answerFourButton.setTextColor(Color.BLACK);
     }
 
     @Override

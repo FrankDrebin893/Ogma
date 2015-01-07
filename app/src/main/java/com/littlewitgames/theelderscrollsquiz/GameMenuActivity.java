@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 
-public class GameMenuActivity extends ActionBarActivity {
+public class GameMenuActivity extends ActionBarActivity implements View.OnClickListener {
     private Button skyrimButton;
     private Button addButton;
 
@@ -46,17 +46,21 @@ public class GameMenuActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
     public void addListeners() {
         skyrimButton = (Button) this.findViewById(R.id.skyrimCategoryButton);
         addButton    = (Button) this.findViewById(R.id.addButton);
 
+        skyrimButton.setOnClickListener(this);
+/*
         skyrimButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 startQuiz();
             }
-        });
+        });*/
 
         addButton.setOnClickListener(new View.OnClickListener()  {
 
@@ -73,12 +77,22 @@ public class GameMenuActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    public void startQuiz() {
+    public void startQuiz(int id) {
         Intent intent = new Intent(this, QuizActivity.class);
         Bundle b = new Bundle();
-        b.putInt("quiz_id", 0); //Your id
+        b.putInt("quiz_id", id); //Your id
         intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.skyrimCategoryButton:
+                System.out.println("Skyrim!");
+                startQuiz(1);
+                break;
+        }
     }
 }

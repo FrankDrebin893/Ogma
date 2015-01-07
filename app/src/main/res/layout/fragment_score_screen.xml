@@ -14,6 +14,7 @@
         android:layout_marginTop="40dp"
         android:textAlignment="center"
         android:id="@+id/scoreTextView"
+        android:gravity="left|center_horizontal"
         style="@style/ResultTextView"
         android:background="@drawable/result_text_view_background"/>
 
@@ -23,7 +24,8 @@
         android:id="@+id/okayButton"
         android:layout_below="@id/scoreTextView"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="25dp"
+
         android:background="@drawable/custom_button"/>
 
 </RelativeLayout>

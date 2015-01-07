@@ -73,7 +73,7 @@ public class ScoreScreenFragment extends Fragment {
         int two = this.totalQuestionsNum;
 
         firstPart = "Quiz finished!";
-        resultText = "\n Correct answers: \t \t " + one + " / " + two;
+        resultText = "\n Correct answers: \t \t |" + one + " / " + two;
 
         StringUtils stringUtils = new StringUtils();
 
