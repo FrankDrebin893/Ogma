@@ -54,7 +54,9 @@
         <activity
             android:name=".QuizActivity"
             android:label="@string/title_activity_quiz"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:configChanges="orientation"
+            android:resumeWhilePausing="true">
         </activity>
     </application>
 

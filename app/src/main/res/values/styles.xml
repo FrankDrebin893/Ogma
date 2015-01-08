@@ -14,6 +14,16 @@
         <item name="android:layout_marginBottom">5dp</item>
     </style>
 
+    <style name="gameMenuTextView">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="gameMenuButton">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
     <color name="correct_green">#757FE817</color>
     <color name="wrong_red">#75C11B17</color>
     <color name="stroke">#5a000000</color>

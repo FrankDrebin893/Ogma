@@ -39,13 +39,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     static final String TABLE_QUIZES          = "quizes";
     static final String QUIZ_NAME             = "name";
-    static final String TOTAL_SCORE           = "total_score";
     static final String CORRECTLY_ANSWERED_NUM= "correctly_answered_questions";
     static final String TOTAL_QUESTIONS       = "total_questions";
 
     private final Context context;
 
-    private static final String DATABASE_CREATE_ONE = "CREATE TABLE " + TABLE_QUIZES + "("+ ID +" INTEGER PRIMARY KEY AUTOINCREMENT, " + QUIZ_NAME + " TEXT NOT NULL, " + TOTAL_SCORE + " INTEGER DEFAULT 0, " + CORRECTLY_ANSWERED_NUM + " INTEGER DEFAULT 0, " + TOTAL_QUESTIONS + " INTEGER DEFAULT 0);";
+    private static final String DATABASE_CREATE_ONE = "CREATE TABLE " + TABLE_QUIZES + "("+ ID +" INTEGER PRIMARY KEY AUTOINCREMENT, " + QUIZ_NAME + " TEXT NOT NULL, " + CORRECTLY_ANSWERED_NUM + " INTEGER DEFAULT 0, " + TOTAL_QUESTIONS + " INTEGER DEFAULT 0);";
     private static final String DATABASE_CREATE_TWO = "CREATE TABLE " + TABLE + "("+ ID +" INTEGER PRIMARY KEY AUTOINCREMENT, " + QUESTION + " TEXT NOT NULL, " + CORRECT_ANSWER + " TEXT NOT NULL, " + WRONG_ANSWER_ONE + " TEXT NOT NULL, " + WRONG_ANSWER_TWO + " TEXT NOT NULL, " + WRONG_ANSWER_THREE + " TEXT NOT NULL, " + QUIZ_ID + " INTEGER, FOREIGN KEY(" + QUIZ_ID + ") REFERENCES " + TABLE_QUIZES + "(" + ID + "));";
 
 
@@ -61,44 +60,56 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(DATABASE_CREATE_ONE);
             db.execSQL(DATABASE_CREATE_TWO);
 
-            // General questions
-            ContentValues contentValuesRegions        = new ContentValues();
-            ContentValues contentValuesHistory        = new ContentValues();
-            ContentValues contentValuesPersonalities  = new ContentValues();
-            ContentValues contentValuesFoods          = new ContentValues();
-            ContentValues contentValuesMusic          = new ContentValues();
-            ContentValues contentValuesCulture        = new ContentValues();
-
-            // Creatures
-            ContentValues contentValuesWildlife       = new ContentValues();
-            ContentValues contentValuesDragons        = new ContentValues();
-
-            // Religion
-            ContentValues contentValuesDaedricPrinces = new ContentValues();
-            ContentValues contentValuesNineDivines    = new ContentValues();
-
-
-
-
-
             ContentValues contentValuesQuizes = new ContentValues();
             ContentValues contentValuesQuestions = new ContentValues();
-            ContentValues cvTwo = new ContentValues();
-            ContentValues cvThree = new ContentValues();
-            contentValuesQuizes.put(ID, 0);
-            contentValuesQuizes.put(QUIZ_NAME, "Elder Scrolls V - Skyrim");
-            contentValuesQuizes.put(TOTAL_SCORE, 0);
-            contentValuesQuizes.put(CORRECTLY_ANSWERED_NUM, 0);
-            contentValuesQuizes.put(TOTAL_QUESTIONS, 0);
-            db.insert(TABLE_QUIZES, QUIZ_NAME, contentValuesQuizes);
 
+            // General lore quizes
+            addQuiz(db, contentValuesQuizes, 0, "Geography");
 
-            contentValuesQuizes.put(ID, 1);
-            contentValuesQuizes.put(QUIZ_NAME, "Elder Scrolls V - SkyrimTwo");
-            contentValuesQuizes.put(TOTAL_SCORE, 0);
-            contentValuesQuizes.put(CORRECTLY_ANSWERED_NUM, 0);
-            contentValuesQuizes.put(TOTAL_QUESTIONS, 0);
-            db.insert(TABLE_QUIZES, QUIZ_NAME, contentValuesQuizes);
+            addQuiz(db, contentValuesQuizes, 1, "Demographics");
+            addQuiz(db, contentValuesQuizes, 2, "Races");
+            addQuiz(db, contentValuesQuizes, 3, "History");
+            addQuiz(db, contentValuesQuizes, 4, "Culture");
+            addQuiz(db, contentValuesQuizes, 5, "Music");
+            addQuiz(db, contentValuesQuizes, 6, "Characters");
+            addQuiz(db, contentValuesQuizes, 7, "Food");
+            addQuiz(db, contentValuesQuizes, 8, "Artifacts");
+
+            // Creature quizes
+            addQuiz(db, contentValuesQuizes, 9, "Wildlife");
+            addQuiz(db, contentValuesQuizes, 10, "Dragons");
+
+            // Religion quizes
+            addQuiz(db, contentValuesQuizes, 11, "Daedric Princes");
+            addQuiz(db, contentValuesQuizes, 12, "The Nine Divines");
+
+            // Game specific quizes
+            addQuiz(db, contentValuesQuizes, 13, "Elder Scrolls V - Skyrim");
+            addQuiz(db, contentValuesQuizes, 14, "Elder Scrolls IV - Oblivion");
+            addQuiz(db, contentValuesQuizes, 15, "Elder Scrolls III - Morrowind");
+
+            // Geography questions
+            addQuestion(db, contentValuesQuestions, "What is the name of Tamriel's northernmost province?", "Skyrim", "High Rock", "Morrowind", "Hammerfell", 0);
+            addQuestion(db, contentValuesQuestions, "What is the name of the island group located to the west of the coast of Valenwood", "Summerset Isles", "Stros M'kai", "Solstheim", "Vvardenfell", 0);
+            addQuestion(db, contentValuesQuestions, "In which province is the coastal city Camlorn located?", "High Rock", "Cyrodill", "Hammerfell", "Morrowind", 0);
+            addQuestion(db, contentValuesQuestions, "In the Nedic language, which province goes by the name of Deathland?", "Hammerfell", "Elsweyr", "Black Marsh", "Valenwood", 0);
+            addQuestion(db, contentValuesQuestions, "Where is the White-Gold Tower situated?", "The Imperial City", "The College of Winterhold", "Mournhold", "Solstheim", 0);
+            addQuestion(db, contentValuesQuestions, "What is the Imperial City surrounded by?", "Water", "Mountains", "Snowy plains", "Crop fields", 0);
+            addQuestion(db, contentValuesQuestions, "What lies north of Skyrim?", "The Sea of Ghosts", "The Topal Sea", "Stros M'Kai", "The Imperial City", 0);
+            addQuestion(db, contentValuesQuestions, "Which is the largest of the following provinces?", "Cyrodiil", "Valenwood", "Elsweyr", "Skyrim", 0);
+            addQuestion(db, contentValuesQuestions, "Which of the cities are located in the Black Marsh?", "Stormhold", "Orcrest", "Kvatch", "Balmora", 0);
+
+            // History
+
+            // Culture
+
+            // Music
+
+            // Personalities
+
+            // Food
+
+            /*
 
             contentValuesQuestions.put(QUESTION, "What is the name of the mortal plane?");
             contentValuesQuestions.put(CORRECT_ANSWER, "Nirn");
@@ -141,25 +152,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValuesQuestions.put(WRONG_ANSWER_THREE, "Sheogorath");
             contentValuesQuestions.put(QUIZ_ID, 0);
             db.insert(TABLE, QUESTION, contentValuesQuestions);
-
+*/
             db.setTransactionSuccessful();
         } finally {
             db.endTransaction();
         }
     }
 
-    public void addQuiz (SQLiteDatabase db, ContentValues cv, int id, String name, int correctly_answered, int total_questions) {
+    public void addQuiz (SQLiteDatabase db, ContentValues cv, int id, String name) {
         cv.put(ID, id);
         cv.put(QUIZ_NAME, name);
-        cv.put(CORRECTLY_ANSWERED_NUM, correctly_answered);
-        cv.put(TOTAL_QUESTIONS, total_questions);
         db.insert(TABLE_QUIZES, QUIZ_NAME, cv);
     }
 
     public void addQuestion (SQLiteDatabase db, ContentValues cv, String question, String correct_answer, String wrong_answer_one, String wrong_answer_two, String wrong_answer_three, int quiz_id) {
         cv.put(QUESTION, question);
         cv.put(CORRECT_ANSWER, correct_answer);
-        cv.put(WRONG_ANSWER_TWO, wrong_answer_one);
+        cv.put(WRONG_ANSWER_ONE, wrong_answer_one);
         cv.put(WRONG_ANSWER_TWO, wrong_answer_two);
         cv.put(WRONG_ANSWER_THREE, wrong_answer_three);
         cv.put(QUIZ_ID, quiz_id);

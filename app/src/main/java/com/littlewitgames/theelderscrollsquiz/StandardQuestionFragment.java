@@ -196,7 +196,7 @@ public class StandardQuestionFragment extends Fragment {
             public void run() {
                 ((QuizActivity)getActivity()).answerListener(isCorrect());
             }
-        }, 750);
+        }, 400);
     }
 
     public void recolorButton(View v) {
@@ -273,6 +273,23 @@ public class StandardQuestionFragment extends Fragment {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().getFragmentManager().findFragmentById(this.getId()).setRetainInstance(true);
+        getActivity().getFragmentManager().beginTransaction().remove(this).commit();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getFragmentManager().findFragmentById(this.getId()).getRetainInstance();
+
+    }
+
+
+
 
 
 }

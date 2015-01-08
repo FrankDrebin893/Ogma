@@ -7,8 +7,46 @@
     tools:context="com.littlewitgames.theelderscrollsquiz.GameMenuActivity"
     android:background="@drawable/background4">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        style="@style/gameMenuTextView"
+        android:id="@+id/general_lore"
+        android:text="General lore"/>
+    
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/geographyButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Geography" />
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/historyButton"
+        android:background="@drawable/game_menu_button"
+        android:text="History" />
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/cultureButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Culture" />
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/musicButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Music" />
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/personalitiesButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Personalities" />
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/foodButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Foods" />
 
     <Button
         android:layout_width="wrap_content"
@@ -22,5 +60,15 @@
         android:text="Add things"
         android:id="@+id/addButton"
         android:layout_below="@+id/skyrimCategoryButton"/>
+
+    <fragment
+        android:id="@+id/adFragment"
+        android:name="com.littlewitgames.theelderscrollsquiz.AdFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_ad"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

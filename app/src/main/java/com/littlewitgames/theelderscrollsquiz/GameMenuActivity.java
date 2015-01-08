@@ -10,8 +10,17 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.littlewitgames.theelderscrollsquiz.Database.QuestionsDataSource;
+import com.littlewitgames.theelderscrollsquiz.Models.Quiz;
+
+import java.sql.SQLException;
+import java.util.List;
+
 
 public class GameMenuActivity extends ActionBarActivity implements View.OnClickListener {
+    private QuestionsDataSource dataSource;
+    private List<Quiz> quizes;
+
     private Button skyrimButton;
     private Button addButton;
 
@@ -21,7 +30,18 @@ public class GameMenuActivity extends ActionBarActivity implements View.OnClickL
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_menu);
+
+        dataSource = new QuestionsDataSource(this);
+
+        try {
+            dataSource.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         addListeners();
+        quizes = dataSource.getAllQuizes();
+
     }
 
 
@@ -91,7 +111,7 @@ public class GameMenuActivity extends ActionBarActivity implements View.OnClickL
         switch (v.getId()) {
             case R.id.skyrimCategoryButton:
                 System.out.println("Skyrim!");
-                startQuiz(1);
+                startQuiz(0);
                 break;
         }
     }

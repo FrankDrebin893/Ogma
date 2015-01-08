@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.style.AlignmentSpan;
 
+import com.littlewitgames.theelderscrollsquiz.Models.Quiz;
 import com.littlewitgames.theelderscrollsquiz.Models.StandardQuestion;
 
 import java.io.IOException;
@@ -27,6 +28,13 @@ public class QuestionsDataSource {
             DatabaseHelper.WRONG_ANSWER_TWO,
             DatabaseHelper.WRONG_ANSWER_THREE,
             DatabaseHelper.QUIZ_ID
+    };
+
+    private String[] allQuizColumns = {
+            DatabaseHelper.ID,
+            DatabaseHelper.QUIZ_NAME,
+            DatabaseHelper.CORRECTLY_ANSWERED_NUM,
+            DatabaseHelper.TOTAL_QUESTIONS
     };
 
     public QuestionsDataSource(Context context) {
@@ -56,6 +64,38 @@ public class QuestionsDataSource {
         StandardQuestion newStandardQuestion = cursorToStandardQuestion(cursor);
         cursor.close();
         return  newStandardQuestion;
+    }
+
+    public void updateQuizScore(int correctAnswers, int totalQuestions, int id) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseHelper.CORRECTLY_ANSWERED_NUM, correctAnswers);
+        contentValues.put(DatabaseHelper.TOTAL_QUESTIONS, totalQuestions);
+        database.update(DatabaseHelper.TABLE_QUIZES, contentValues, DatabaseHelper.ID + " = " + id, null);
+    }
+
+    public List<Quiz> getAllQuizes() {
+        List<Quiz> quizes = new ArrayList<Quiz>();
+
+        Cursor cursor = database.query(DatabaseHelper.TABLE_QUIZES, allQuizColumns, null, null, null, null, null);
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            Quiz quiz = cursorToQuiz(cursor);
+            quizes.add(quiz);
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        return quizes;
+    }
+
+    private Quiz cursorToQuiz(Cursor cursor) {
+        Quiz quiz = new Quiz();
+        quiz.setId(cursor.getLong(0));
+        quiz.setName(cursor.getString(1));
+        quiz.setCorrectly_answered(cursor.getInt(2));
+        quiz.setTotal_questions(cursor.getInt(3));
+        return quiz;
     }
 
     private StandardQuestion cursorToStandardQuestion(Cursor cursor) {

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebBackForwardList;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -23,6 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuizActivity extends FragmentActivity implements StandardQuestionFragment.OnFragmentInteractionListener {
+    private final String SAVESTATE_CURRENT_QUESTION = "currentQuestion";
+    private final String SAVESTATE_CORRECT_ANSWERS = "correctAnswers";
+
     private QuestionsDataSource datasource;
     private QuizScoreHelper quizScoreHelper;
 
@@ -35,9 +39,6 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
     private int totalQuestionsNum;
     private int currentQuestionsNum;
     private int correctQuestionsNum;
-
-    private int currentFragmentId;
-    private int newFragmentId;
 
     private String question;
     private String questionText;
@@ -59,6 +60,8 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
         setContentView(R.layout.activity_quiz);
         findViewById(R.id.scoreScreenFragment).setVisibility(View.GONE);
 
+
+
         Bundle b = getIntent().getExtras();
         int quiz_id = b.getInt("quiz_id");
 
@@ -78,6 +81,11 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
         this.correctQuestionsNum        = quizScoreHelper.getCorrectQuestions();
         this.currentQuestionsNum        = quizScoreHelper.getCurrentQuestionNum();
 
+        if (savedInstanceState != null) {
+            currentQuestionsNum = savedInstanceState.getInt(SAVESTATE_CURRENT_QUESTION) - 1;
+            correctQuestionsNum = savedInstanceState.getInt(SAVESTATE_CORRECT_ANSWERS);
+        }
+
         getNextQuestion();
 
 /*        initializeValues();
@@ -87,6 +95,14 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
                 totalQuestionsNum, correctQuestionsNum, currentQuestionsNum);
         fragment.setArguments(fragBundle);
         getFragmentManager().beginTransaction().replace(R.id.standardQuestionFragment, fragment).commit();*/
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        currentQuestionsNum = savedInstanceState.getInt(SAVESTATE_CURRENT_QUESTION);
+        correctQuestionsNum = savedInstanceState.getInt(SAVESTATE_CORRECT_ANSWERS);
     }
 
     public void answerListener(boolean isCorrect) {
@@ -193,4 +209,13 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
     public void onFragmentInteraction(Uri uri) {
         System.out.println("Fragment Interaction");
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putInt(SAVESTATE_CURRENT_QUESTION, currentQuestionsNum);
+        savedInstanceState.putInt(SAVESTATE_CORRECT_ANSWERS, correctQuestionsNum);
+            super.onSaveInstanceState(savedInstanceState);
+
+    }
+
 }
