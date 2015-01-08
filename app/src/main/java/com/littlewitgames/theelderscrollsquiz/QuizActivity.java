@@ -86,6 +86,8 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
             correctQuestionsNum = savedInstanceState.getInt(SAVESTATE_CORRECT_ANSWERS);
         }
 
+        datasource.close();
+
         getNextQuestion();
 
 /*        initializeValues();

@@ -1,3 +1,7 @@
+<ScrollView
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -7,59 +11,7 @@
     tools:context="com.littlewitgames.theelderscrollsquiz.GameMenuActivity"
     android:background="@drawable/background4">
 
-    <TextView
-        style="@style/gameMenuTextView"
-        android:id="@+id/general_lore"
-        android:text="General lore"/>
-    
-    <Button
-        style="@style/gameMenuButton"
-        android:id="@+id/geographyButton"
-        android:background="@drawable/game_menu_button"
-        android:text="Geography" />
 
-    <Button
-        style="@style/gameMenuButton"
-        android:id="@+id/historyButton"
-        android:background="@drawable/game_menu_button"
-        android:text="History" />
-
-    <Button
-        style="@style/gameMenuButton"
-        android:id="@+id/cultureButton"
-        android:background="@drawable/game_menu_button"
-        android:text="Culture" />
-
-    <Button
-        style="@style/gameMenuButton"
-        android:id="@+id/musicButton"
-        android:background="@drawable/game_menu_button"
-        android:text="Music" />
-
-    <Button
-        style="@style/gameMenuButton"
-        android:id="@+id/personalitiesButton"
-        android:background="@drawable/game_menu_button"
-        android:text="Personalities" />
-
-    <Button
-        style="@style/gameMenuButton"
-        android:id="@+id/foodButton"
-        android:background="@drawable/game_menu_button"
-        android:text="Foods" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Elder Scrolls IV: Skyrim"
-        android:id="@+id/skyrimCategoryButton"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add things"
-        android:id="@+id/addButton"
-        android:layout_below="@+id/skyrimCategoryButton"/>
 
     <fragment
         android:id="@+id/adFragment"
@@ -67,8 +19,99 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_ad"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        style="@style/gameMenuTextView"
+        android:id="@+id/general_lore"
+        android:text="General lore"
+        android:layout_below="@id/adFragment"
+        android:background="@drawable/game_menu_button"/>
+    
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/geographyButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Geography"
+        android:layout_below="@id/general_lore"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/historyButton"
+        android:background="@drawable/game_menu_button"
+        android:text="History"
+        android:layout_below="@id/geographyButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/cultureButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Culture"
+        android:layout_below="@id/historyButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/musicButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Music"
+        android:layout_below="@id/cultureButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/personalitiesButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Personalities"
+        android:layout_below="@id/musicButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/foodButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Foods"
+        android:layout_below="@id/personalitiesButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/wildlifeButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Wildlife"
+        android:layout_below="@id/foodButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/dragonsButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Dragons"
+        android:layout_below="@id/wildlifeButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/daedricButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Daedric Princes"
+        android:layout_below="@id/dragonsButton"
+        />
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/ninedivinesButton"
+        android:background="@drawable/game_menu_button"
+        android:text="The Nine Divines"
+        android:layout_below="@id/daedricButton"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Elder Scrolls IV: Skyrim"
+        android:id="@+id/skyrimCategoryButton"
+        android:layout_below="@id/ninedivinesButton"/>
+
+
+
+
+
+
 </RelativeLayout>
+</ScrollView>

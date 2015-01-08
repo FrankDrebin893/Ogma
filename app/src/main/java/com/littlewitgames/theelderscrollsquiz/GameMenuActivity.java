@@ -21,8 +21,11 @@ public class GameMenuActivity extends ActionBarActivity implements View.OnClickL
     private QuestionsDataSource dataSource;
     private List<Quiz> quizes;
 
+    private Button geographyButton;
+    private Button historyButton;
+    private Button cultureButton;
+
     private Button skyrimButton;
-    private Button addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +42,9 @@ public class GameMenuActivity extends ActionBarActivity implements View.OnClickL
             e.printStackTrace();
         }
 
-        addListeners();
         quizes = dataSource.getAllQuizes();
+
+        dataSource.close();
 
     }
 
@@ -67,34 +71,33 @@ public class GameMenuActivity extends ActionBarActivity implements View.OnClickL
     }
 
 
-
-    public void addListeners() {
-        skyrimButton = (Button) this.findViewById(R.id.skyrimCategoryButton);
-        addButton    = (Button) this.findViewById(R.id.addButton);
-
-        skyrimButton.setOnClickListener(this);
-/*
-        skyrimButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                startQuiz();
-            }
-        });*/
-
-        addButton.setOnClickListener(new View.OnClickListener()  {
-
-            @Override
-            public void onClick(View v) {
-                startAddList();
-
-            }
-        });
-    }
-
-    public void startAddList() {
-        Intent intent = new Intent(this, QuestionsListActivity.class);
-        startActivity(intent);
+    public void quizButtonListener(View v) {
+        switch (v.getId()) {
+            case R.id.geographyButton:
+                startQuiz(0);
+                break;
+            case R.id.historyButton:
+                startQuiz(1);
+                break;
+            case R.id.cultureButton:
+                startQuiz(2);
+                break;
+            case R.id.musicButton:
+                startQuiz(3);
+                break;
+            case R.id.personalitiesButton:
+                startQuiz(4);
+                break;
+            case R.id.foodButton:
+                startQuiz(5);
+                break;
+            case R.id.wildlifeButton:
+                startQuiz(6);
+                break;
+            case R.id.dragonsButton:
+                startQuiz(7);
+                break;
+        }
     }
 
     public void startQuiz(int id) {
@@ -109,8 +112,7 @@ public class GameMenuActivity extends ActionBarActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.skyrimCategoryButton:
-                System.out.println("Skyrim!");
+            case R.id.geographyButton:
                 startQuiz(0);
                 break;
         }
