@@ -18,8 +18,13 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">20dp</item>
-        <item name="android:height">30dp</item>
-        <item name="android:padding">2dp</item>
+        <item name="android:textColor">#fff4f4f4</item>
+        <item name="android:gravity">center</item>
+        <item name="android:height">40dp</item>
+        <item name="android:shadowColor">@color/text_shadow</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
     </style>
 
     <style name="gameMenuButton">
@@ -30,9 +35,27 @@
         <item name="android:onClick">quizButtonListener</item>
     </style>
 
+    <style name="helpTextView">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#fff4f4f4</item>
+        <item name="android:shadowColor">@color/text_shadow</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+
     <color name="correct_green">#757FE817</color>
     <color name="wrong_red">#75C11B17</color>
     <color name="stroke">#5a000000</color>
-    <color name="custom_button_background">#19000000</color>
+    <color name="custom_button_background">#23000000</color>
+    <color name="custom_button_background_pressed">#32000000</color>
+    <color name="custom_textview_background">#e94b2e0f</color>
+
+    <color name="light_font">#FBFBFB</color>
+    <color name="grey_font">#ff9e9e9e</color>
+    <color name="text_shadow">#7F000000</color>
+    <color name="text_shadow_white">#FFFFFF</color>
 
 </resources>

@@ -65,8 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             // General lore quizes
             addQuiz(db, contentValuesQuizes, 0, "Geography");
-
-            addQuiz(db, contentValuesQuizes, 1, "Demographics");
+            addQuiz(db, contentValuesQuizes, 1, "Factions");
             addQuiz(db, contentValuesQuizes, 2, "Races");
             addQuiz(db, contentValuesQuizes, 3, "History");
             addQuiz(db, contentValuesQuizes, 4, "Culture");
@@ -84,9 +83,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             addQuiz(db, contentValuesQuizes, 12, "The Nine Divines");
 
             // Game specific quizes
-            addQuiz(db, contentValuesQuizes, 13, "Elder Scrolls V - Skyrim");
-            addQuiz(db, contentValuesQuizes, 14, "Elder Scrolls IV - Oblivion");
-            addQuiz(db, contentValuesQuizes, 15, "Elder Scrolls III - Morrowind");
+            // Skyrim
+            addQuiz(db, contentValuesQuizes, 13, "Elder Scrolls V - Skyrim - Items");
+            addQuiz(db, contentValuesQuizes, 14, "Elder Scrolls V - Skyrim - Story");
+            addQuiz(db, contentValuesQuizes, 15, "Elder Scrolls V - Skyrim - Characters");
+            addQuiz(db, contentValuesQuizes, 16, "Elder Scrolls V - Skyrim - Spells");
+            addQuiz(db, contentValuesQuizes, 17, "Elder Scrolls V - Skyrim - Character build");
+            addQuiz(db, contentValuesQuizes, 18, "Elder Scrolls V - Skyrim - Quotes");
+            addQuiz(db, contentValuesQuizes, 19, "Elder Scrolls V - Skyrim - Quests");
+
+            // Oblivion
+            addQuiz(db, contentValuesQuizes, 20, "Elder Scrolls IV - Oblivion - Items");
+            addQuiz(db, contentValuesQuizes, 21, "Elder Scrolls IV - Oblivion - Story");
+            addQuiz(db, contentValuesQuizes, 22, "Elder Scrolls IV - Oblivion - Characters");
+            addQuiz(db, contentValuesQuizes, 23, "Elder Scrolls IV - Oblivion - Spells");
+            addQuiz(db, contentValuesQuizes, 24, "Elder Scrolls IV - Oblivion - Character build");
+            addQuiz(db, contentValuesQuizes, 25, "Elder Scrolls IV - Oblivion - Quotes");
+            addQuiz(db, contentValuesQuizes, 26, "Elder Scrolls IV - Oblivion - Quests");
+
+            // Morrowind
+            addQuiz(db, contentValuesQuizes, 27, "Elder Scrolls III - Morrowind - Items");
+            addQuiz(db, contentValuesQuizes, 28, "Elder Scrolls III - Morrowind - Story");
+            addQuiz(db, contentValuesQuizes, 29, "Elder Scrolls III - Morrowind - Characters");
+            addQuiz(db, contentValuesQuizes, 30, "Elder Scrolls III - Morrowind - Spells");
+            addQuiz(db, contentValuesQuizes, 31, "Elder Scrolls III - Morrowind - Character build");
+            addQuiz(db, contentValuesQuizes, 32, "Elder Scrolls III - Morrowind - Quotes");
+            addQuiz(db, contentValuesQuizes, 33, "Elder Scrolls III - Morrowind - Quests");
 
             // Geography questions
             addQuestion(db, contentValuesQuestions, "What is the name of Tamriel's northernmost province?", "Skyrim", "High Rock", "Morrowind", "Hammerfell", 0);

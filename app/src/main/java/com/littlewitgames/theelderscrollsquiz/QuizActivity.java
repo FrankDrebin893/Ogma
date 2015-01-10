@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.tagmanager.Container;
 import com.littlewitgames.theelderscrollsquiz.Database.QuestionsDataSource;
+import com.littlewitgames.theelderscrollsquiz.Models.Quiz;
 import com.littlewitgames.theelderscrollsquiz.Models.QuizScoreHelper;
 import com.littlewitgames.theelderscrollsquiz.Models.StandardQuestion;
 
@@ -39,6 +40,7 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
     private int totalQuestionsNum;
     private int currentQuestionsNum;
     private int correctQuestionsNum;
+    private int quiz_id;
 
     private String question;
     private String questionText;
@@ -63,7 +65,7 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
 
 
         Bundle b = getIntent().getExtras();
-        int quiz_id = b.getInt("quiz_id");
+        quiz_id = b.getInt("quiz_id");
 
         datasource      = new QuestionsDataSource(this);
 
@@ -113,6 +115,11 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
         if(currentQuestionsNum < totalQuestionsNum) {
             getNextQuestion();
         } else {
+            try {
+                updateQuizScore();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             startScoreScreen();
         }
 
@@ -135,6 +142,21 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
         scoreFragment = ScoreScreenFragment.newInstance(totalQuestionsNum, correctQuestionsNum);
         ft.replace(R.id.scoreScreenFragment, scoreFragment);
         ft.commit();
+    }
+
+    public void updateQuizScore() throws SQLException {
+        Quiz checkScoreQuiz;
+        int checkCorrectAnswers;
+
+        datasource.open();
+        checkScoreQuiz = datasource.getQuiz(quiz_id);
+        checkCorrectAnswers = checkScoreQuiz.getCorrectly_answered();
+
+        if (checkCorrectAnswers < correctQuestionsNum) {
+        datasource.updateQuizScore(correctQuestionsNum, totalQuestionsNum, quiz_id);
+        }
+
+        datasource.close();
     }
 
     public void initializeValues() {

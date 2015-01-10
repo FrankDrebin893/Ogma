@@ -28,7 +28,7 @@
         android:id="@+id/general_lore"
         android:text="General lore"
         android:layout_below="@id/adFragment"
-        android:background="@drawable/game_menu_button"/>
+        android:background="@drawable/game_menu_textview"/>
     
     <Button
         style="@style/gameMenuButton"
@@ -39,10 +39,24 @@
 
     <Button
         style="@style/gameMenuButton"
+        android:id="@+id/factionsButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Factions"
+        android:layout_below="@id/geographyButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/racesButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Races"
+        android:layout_below="@id/factionsButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
         android:id="@+id/historyButton"
         android:background="@drawable/game_menu_button"
         android:text="History"
-        android:layout_below="@id/geographyButton"/>
+        android:layout_below="@id/racesButton"/>
 
     <Button
         style="@style/gameMenuButton"
@@ -74,10 +88,17 @@
 
     <Button
         style="@style/gameMenuButton"
+        android:id="@+id/artifactsButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Artifacts"
+        android:layout_below="@id/foodButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
         android:id="@+id/wildlifeButton"
         android:background="@drawable/game_menu_button"
         android:text="Wildlife"
-        android:layout_below="@id/foodButton"/>
+        android:layout_below="@id/artifactsButton"/>
 
     <Button
         style="@style/gameMenuButton"
@@ -101,17 +122,173 @@
         android:text="The Nine Divines"
         android:layout_below="@id/daedricButton"/>
 
+    <TextView
+        style="@style/gameMenuTextView"
+        android:id="@+id/skyrimLoreTextView"
+        android:text="Elder Scrolls V: Skyrim lore"
+        android:layout_below="@id/ninedivinesButton"
+        android:background="@drawable/game_menu_textview"/>
+
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Elder Scrolls IV: Skyrim"
-        android:id="@+id/skyrimCategoryButton"
-        android:layout_below="@id/ninedivinesButton"/>
+        style="@style/gameMenuButton"
+        android:id="@+id/skyrimItemsButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Items"
+        android:layout_below="@id/skyrimLoreTextView"/>
 
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/skyrimStoryButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Story"
+        android:layout_below="@id/skyrimItemsButton"/>
 
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/skyrimCharactersButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Characters"
+        android:layout_below="@id/skyrimStoryButton"/>
 
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/skyrimSpellsButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Spells"
+        android:layout_below="@id/skyrimCharactersButton"/>
 
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/skyrimCharacterBuildButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Character build"
+        android:layout_below="@id/skyrimSpellsButton"/>
 
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/skyrimQuotesButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Quotes"
+        android:layout_below="@id/skyrimCharacterBuildButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/skyrimQuestsButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Quests"
+        android:layout_below="@id/skyrimQuotesButton"/>
+
+    <TextView
+        style="@style/gameMenuTextView"
+        android:id="@+id/oblivionLoreTextView"
+        android:text="Elder Scrolls IV: Oblivion lore"
+        android:layout_below="@id/skyrimQuestsButton"
+        android:background="@drawable/game_menu_textview"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/oblivionItemsButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Items"
+        android:layout_below="@id/oblivionLoreTextView"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/oblivionStoryButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Story"
+        android:layout_below="@id/oblivionItemsButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/oblivionCharactersButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Characters"
+        android:layout_below="@id/oblivionStoryButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/oblivionSpellsButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Spells"
+        android:layout_below="@id/oblivionCharactersButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/oblivionCharacterBuildButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Character build"
+        android:layout_below="@id/oblivionSpellsButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/oblivionQuotesButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Quotes"
+        android:layout_below="@id/oblivionCharacterBuildButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/oblivionQuestsButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Quests"
+        android:layout_below="@id/oblivionQuotesButton"/>
+
+    <TextView
+        style="@style/gameMenuTextView"
+        android:id="@+id/morrowindLoreTextView"
+        android:text="Elder Scrolls III: Morrowind lore"
+        android:layout_below="@id/oblivionQuestsButton"
+        android:background="@drawable/game_menu_textview"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/morrowindItemsButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Items"
+        android:layout_below="@id/morrowindLoreTextView"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/morrowindStoryButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Story"
+        android:layout_below="@id/morrowindItemsButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/morrowindCharactersButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Characters"
+        android:layout_below="@id/morrowindStoryButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/morrowindSpellsButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Spells"
+        android:layout_below="@id/morrowindCharactersButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/morrowindCharacterBuildButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Character build"
+        android:layout_below="@id/morrowindSpellsButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/morrowindQuotesButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Quotes"
+        android:layout_below="@id/morrowindCharacterBuildButton"/>
+
+    <Button
+        style="@style/gameMenuButton"
+        android:id="@+id/morrowindQuestsButton"
+        android:background="@drawable/game_menu_button"
+        android:text="Quests"
+        android:layout_below="@id/morrowindQuotesButton"/>
 
 </RelativeLayout>
 </ScrollView>

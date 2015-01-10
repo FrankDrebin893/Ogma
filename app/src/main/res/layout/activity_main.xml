@@ -57,7 +57,8 @@
         android:layout_below="@+id/howButton"
         android:layout_centerHorizontal="true"
         android:width="@dimen/menu_button_width"
-        android:layout_marginTop="@dimen/menu_button_margin" />
+        android:layout_marginTop="@dimen/menu_button_margin"
+        android:onClick="startScoresActivity"/>
 
     <Button
         android:layout_width="wrap_content"

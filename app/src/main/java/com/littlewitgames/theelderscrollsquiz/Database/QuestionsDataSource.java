@@ -66,6 +66,18 @@ public class QuestionsDataSource {
         return  newStandardQuestion;
     }
 
+    public Quiz getQuiz(int id) {
+        Quiz quiz = new Quiz();
+
+        Cursor cursor = database.query(DatabaseHelper.TABLE_QUIZES, allQuizColumns, DatabaseHelper.ID + " = " + id, null, null, null, null);
+        cursor.moveToFirst();
+
+        quiz = cursorToQuiz(cursor);
+
+        cursor.close();
+        return quiz;
+    }
+
     public void updateQuizScore(int correctAnswers, int totalQuestions, int id) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.CORRECTLY_ANSWERED_NUM, correctAnswers);

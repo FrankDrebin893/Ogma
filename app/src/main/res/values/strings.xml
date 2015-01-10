@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">TheElderScrollsQuiz</string>
+    <string name="app_name">Oghma Infinum</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_standard_question">StandardQuestionActivity</string>
@@ -9,7 +9,7 @@
     <string name="title_activity_main_menu">MainMenuActivity</string>
     <string name="play_game_button">Play Game!</string>
     <string name="how_to_play_button">How to play</string>
-    <string name="achievements_button">Achievements</string>
+    <string name="achievements_button">Scores</string>
     <string name="help_button">Help</string>
     <string name="credits_button">Credits</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -17,15 +17,16 @@
     <string name="book_icon_desc">bookIconBanner</string>
     <string name="title_activity_game_menu">GameMenuActivity</string>
     <string name="title_activity_game_help">GameHelpActivity</string>
-    <string name="instructions">Thank you for installing this game! In order to play, pick a category and choose one of the quizzes from that category. \n You will score points based on correct answers.
-    A goal of this game is to have a leader boards, so you can compete against others. sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-    ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-    ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-    ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-    ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-    ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-    ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</string>
     <string name="title_activity_quiz">QuizActivity</string>
     <string name="category">category</string>
+    <string name="introduction">Oghma Infinium is a quiz app based around the lore and games of the "Elder Scrolls" series.
+        \n \nCurrently, the game is based purely on standard quiz questions each consisting of a question and four possible answers.</string>
+    <string name="instructions"><b>How to play:</b>     \nPress the "Play game!" button in the main menu and choose any quiz to your liking from the categories.
+    \n \nIn the quiz you will be presented with a question and four possible answers.
+    \n \nSelecting the correct question will result in a green highlight on the button pressed, red if a wrong answer is chosen.
+    \n \nAs you choose an answer a new quiz question will appear, until the end of the quiz.
+    \n \nAt the end of the quiz, a screen will appear displaying your score.
+    \n \nYour score will be saved, and can be found in the "Scores" section, which you can navigate to from the main menu.</string>
+    <string name="title_activity_scores">ScoresActivity</string>
 
 </resources>

@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.SET_DEBUG_APP"></uses-permission>
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
 
     <application
         android:allowBackup="true"
@@ -53,10 +53,14 @@
         </activity>
         <activity
             android:name=".QuizActivity"
-            android:label="@string/title_activity_quiz"
-            android:screenOrientation="landscape"
             android:configChanges="orientation"
-            android:resumeWhilePausing="true">
+            android:label="@string/title_activity_quiz"
+            android:resumeWhilePausing="true"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".ScoresActivity"
+            android:label="@string/title_activity_scores" >
         </activity>
     </application>
 

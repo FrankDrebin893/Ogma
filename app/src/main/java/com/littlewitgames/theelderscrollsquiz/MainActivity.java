@@ -135,6 +135,11 @@ public class MainActivity extends ActionBarActivity {
         this.intent = new Intent(this, GameHelpActivity.class);
         startActivity(intent);
     }
+
+    public void startScoresActivity(View view) {
+        this.intent = new Intent(this, ScoresActivity.class);
+        startActivity(intent);
+    }
  }
 
 
