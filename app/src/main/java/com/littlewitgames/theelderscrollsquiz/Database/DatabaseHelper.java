@@ -120,10 +120,68 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             addQuestion(db, contentValuesQuestions, "What lies north of Skyrim?", "The Sea of Ghosts", "The Topal Sea", "Stros M'Kai", "The Imperial City", 0);
             addQuestion(db, contentValuesQuestions, "Which is the largest of the following provinces?", "Cyrodiil", "Valenwood", "Elsweyr", "Skyrim", 0);
             addQuestion(db, contentValuesQuestions, "Which of the cities are located in the Black Marsh?", "Stormhold", "Orcrest", "Kvatch", "Balmora", 0);
+            addQuestion(db, contentValuesQuestions, "What is the name of the continent that is located far to the north of Tamriel and with its cold climate has caused climate has caused the Sea of Ghosts to become icy?", "Atmora", "Niden", "Elsweyr", "Bahamas", 0);
+            addQuestion(db, contentValuesQuestions, "Which of these is the name of one of Nirn's continents?", "Akavir", "Bora", "Sinderis", "Takun", 0);
+            addQuestion(db, contentValuesQuestions, "Which of these are not one of the four warring kingdoms of Akavir?", "Poo'Tang", "Tsaesci", "Ka Po' Tun", "Kamal", 0);
+            addQuestion(db, contentValuesQuestions, "The continued existence of this continent is unknown and is claimed by the High Elves to be birthplace of elves and mankind.", "Aldmeris", "Thras", "Brismeris", "Ildmeris", 0);
+            addQuestion(db, contentValuesQuestions, "Which of these continents is characterized by its rocky, barren hills?", "Yokuda", "Thras", "Akavir", "Aldmeris", 0);
+            addQuestion(db, contentValuesQuestions, "Named in the ancient Elven language of Ehlnofex, what does Nirn actually mean?", "Arena", "World", "Mortal plane", "Life", 0);
+
+            // Factions
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 1);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 1);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 1);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 1);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 1);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 1);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 1);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 1);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 1);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 1);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 1);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 1);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 1);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 1);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 1);
+
+            // Races
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 2);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 2);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 2);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 2);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 2);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 2);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 2);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 2);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 2);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 2);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 2);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 2);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 2);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 2);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 2);
 
             // History
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 3);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 3);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 3);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 3);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 3);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 3);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 3);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 3);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 3);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 3);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 3);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 3);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 3);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 3);
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 3);
+
+
 
             // Culture
+            addQuestion(db, contentValuesQuestions, "", "", "", "", "", 4);
 
             // Music
 
