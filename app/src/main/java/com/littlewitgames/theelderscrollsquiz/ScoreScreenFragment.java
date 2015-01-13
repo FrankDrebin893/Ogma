@@ -1,5 +1,6 @@
 package com.littlewitgames.theelderscrollsquiz;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -67,7 +68,7 @@ public class ScoreScreenFragment extends Fragment {
 
     public void assignValues(View view) {
         resultTextView = (TextView) view.findViewById(R.id.scoreTextView);
-        exitButton     = (Button) view.findViewById(R.id.okayButton);
+        exitButton     = (Button) view.findViewById(R.id.exitButton);
 
         int one = this.correctQuestionsNum;
         int two = this.totalQuestionsNum;
@@ -83,8 +84,6 @@ public class ScoreScreenFragment extends Fragment {
             resultTextView.append(resultText);
         }
 
-
-
         exitButton.setText("To main menu");
     }
 
@@ -94,6 +93,8 @@ public class ScoreScreenFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
+
+
 
     @Override
     public void onDetach() {

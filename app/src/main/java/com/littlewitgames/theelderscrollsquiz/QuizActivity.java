@@ -1,6 +1,7 @@
 package com.littlewitgames.theelderscrollsquiz;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -239,7 +240,11 @@ public class QuizActivity extends FragmentActivity implements StandardQuestionFr
         savedInstanceState.putInt(SAVESTATE_CURRENT_QUESTION, currentQuestionsNum);
         savedInstanceState.putInt(SAVESTATE_CORRECT_ANSWERS, correctQuestionsNum);
             super.onSaveInstanceState(savedInstanceState);
+    }
 
+    public void returnToMain(View v) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 }

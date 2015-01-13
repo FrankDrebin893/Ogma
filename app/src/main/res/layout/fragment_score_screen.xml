@@ -21,11 +21,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/okayButton"
+        android:id="@+id/exitButton"
         android:layout_below="@id/scoreTextView"
         android:layout_alignParentRight="true"
         android:layout_marginRight="25dp"
-
+        android:height="30dp"
+        android:width="100dp"
+        android:onClick="returnToMain"
         android:background="@drawable/custom_button"/>
 
 </RelativeLayout>
